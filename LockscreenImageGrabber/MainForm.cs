@@ -62,26 +62,35 @@ namespace LockscreenImageGrabber
                 var path = Path.Combine(tempPath, Path.GetFileName(sourcePath) + ".jpg");
                 File.Copy(sourcePath, path, true);
 
-                using (var image = Image.FromFile(path))
+                try
                 {
-                    if (image.Width != screenWidth || image.Height != screenHeight)
+
+                    using (var image = Image.FromFile(path))
                     {
-                        imageIndex++;
-                        continue;
-                    }
-
-                    var height = (int)Math.Floor((float)maxThumbnailWidth / ((float)image.Width / (float)image.Height));
-
-                    this.loadWorker.ReportProgress(
-                        imageIndex / imageCount * 100,
-                        new ImageModel
+                        if (image.Width != screenWidth || image.Height != screenHeight)
                         {
-                            SourcePath = sourcePath,
-                            TempPath = path,
-                            FileName = Path.GetFileNameWithoutExtension(path),
-                            Thumbnail = image.GetThumbnailImage(maxThumbnailWidth, height, null, IntPtr.Zero)
-                        });
-                    imageIndex++;
+                            imageIndex++;
+                            continue;
+                        }
+
+                        var height =
+                            (int) Math.Floor((float) maxThumbnailWidth / ((float) image.Width / (float) image.Height));
+
+                        this.loadWorker.ReportProgress(
+                            imageIndex / imageCount * 100,
+                            new ImageModel
+                            {
+                                SourcePath = sourcePath,
+                                TempPath = path,
+                                FileName = Path.GetFileNameWithoutExtension(path),
+                                Thumbnail = image.GetThumbnailImage(maxThumbnailWidth, height, null, IntPtr.Zero)
+                            });
+                        imageIndex++;
+                    }
+                }
+                catch (OutOfMemoryException ex)
+                {
+                    // File is not a valid image so Image.FromFile throws an OutOfMemoryException
                 }
             }
         }

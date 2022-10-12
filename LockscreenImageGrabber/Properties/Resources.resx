@@ -114,4 +114,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="SaveAllImages" xml:space="preserve">
+    <value>&amp;Save all images...</value>
+  </data>
+  <data name="TheLockscreenAssetsFolderCouldNotBeFound" xml:space="preserve">
+    <value>The lockscreen assets folder could not be found.</value>
+  </data>
+  <data name="ItSeemsYouHaveDisabledLockscreenSpotlightNoImagesWereFound" xml:space="preserve">
+    <value>It seems you have disabled Lockscreen Spotlight. No images were found.</value>
+  </data>
+  <data name="SelectedPathDoesNotExist" xml:space="preserve">
+    <value>Selected path does not exist.</value>
+  </data>
+  <data name="OpenInDefaultImageViewer" xml:space="preserve">
+    <value>&amp;Open in default image viewer</value>
+  </data>
+  <data name="SaveAs" xml:space="preserve">
+    <value>&amp;Save as...</value>
+  </data>
+  <data name="CopyFilePath" xml:space="preserve">
+    <value>&amp;Copy file path</value>
+  </data>
+  <data name="CopyImage" xml:space="preserve">
+    <value>Copy &amp;image</value>
+  </data>
+  <data name="LockscreenImageGrabber" xml:space="preserve">
+    <value>Lockscreen Image Grabber</value>
+  </data>
 </root>

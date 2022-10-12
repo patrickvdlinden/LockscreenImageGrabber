@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="AA86C3D0-F359-41E4-BF94-8AC3361A0A8F"
-     Name="Lockscreen Image Grabber" Language="1033" Version="1.0" Manufacturer="Zaggoware" UpgradeCode="3d1a487f-336f-499c-82bc-d8d5b40230ef">
+	<Product Id="*"
+     Name="!(loc.ApplicationName)" Language="1033" Version="1.0.0.0" Manufacturer="Zaggoware" UpgradeCode="AA86C3D0-F359-41E4-BF94-8AC3361A0A8F">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
-		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <Upgrade Id="AA86C3D0-F359-41E4-BF94-8AC3361A0A8F">
+      <UpgradeVersion Minimum="1.0.0.0" OnlyDetect="yes" Property="NEWERVERSIONDETECTED" />
+      <UpgradeVersion OnlyDetect="no" Minimum="0.0.0.0" IncludeMinimum="yes" Maximum="1.0.0.0" Property="OLDERVERSIONBEINGUPGRADED" IgnoreRemoveFailure="yes">
+      </UpgradeVersion>
+    </Upgrade>
+
+		
+    <MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeMessage)" />
 		<MediaTemplate EmbedCab="yes" />
 
-		<Feature Id="ProductFeature" Title="Lockscreen Image Grabber Installer" Level="1" Display="expand" ConfigurableDirectory="TARGETDIR">
+		<Feature Id="ProductFeature" Title="!(loc.ApplicationName) Installer" Level="1" Display="expand" ConfigurableDirectory="TARGETDIR">
 			<ComponentRef Id="MainExecutable" />
 			<ComponentRef Id="ProgramMenuDir" />
 		</Feature>
@@ -36,11 +43,11 @@
 	<Fragment>
 		<Directory Id="TARGETDIR" Name="SourceDir">
 			<Directory Id="ProgramFilesFolder">
-				<Directory Id="INSTALLFOLDER" Name="Lockscreen Image Grabber" />
+				<Directory Id="INSTALLFOLDER" Name="!(loc.ApplicationName)" />
 			</Directory>
 
       <Directory Id="ProgramMenuFolder" Name="Programs">
-        <Directory Id="ProgramMenuDir" Name="Lockscreen Image Grabber">
+        <Directory Id="ProgramMenuDir" Name="!(loc.ApplicationName)">
           <Component Id="ProgramMenuDir" Guid="117A9C04-EA60-4A72-95E5-F08903AFB97F">
             <RemoveFolder Id="ProgramMenuDir" On="uninstall" />
             <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" Type="string" Value="" KeyPath="yes" />
@@ -56,9 +63,9 @@
 		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
       <Component Id="MainExecutable" Guid="F2230F33-0E18-433F-A7DB-3CC2847999E0">
         <File Id="MainEXE" Name="LockscreenImageGrabber.exe" Source="$(var.LockscreenImageGrabber.TargetDir)\LockscreenImageGrabber.exe" KeyPath="yes">
-          <Shortcut Id="StartMenuShortcut" Directory="ProgramMenuDir" Name="Lockscreen Image Grabber"
+          <Shortcut Id="StartMenuShortcut" Directory="ProgramMenuDir" Name="!(loc.ApplicationName)"
             WorkingDirectory="INSTALLDIR" Icon="icon.ico" IconIndex="0" Advertise="yes" />
-          <Shortcut Id="DesktopShortcut" Directory="DesktopFolder" Name="Lockscreen Image Grabber"
+          <Shortcut Id="DesktopShortcut" Directory="DesktopFolder" Name="!(loc.ApplicationName)"
               WorkingDirectory="INSTALLDIR" Icon="icon.ico" IconIndex="0" Advertise="yes" />
         </File>
       </Component>

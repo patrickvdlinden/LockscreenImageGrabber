@@ -17,16 +17,16 @@ namespace LockscreenImageGrabber
             this.ContextMenu = new ContextMenu(
                 new MenuItem[]
                 {
-                    new MenuItem("&Open in default image viewer", this.OpenContextMenuItem_OnClick, Shortcut.CtrlO)
+                    new MenuItem(Properties.Resources.OpenInDefaultImageViewer, this.OpenContextMenuItem_OnClick, Shortcut.CtrlO)
                     {
                         DefaultItem = true
                     },
                     new MenuItem("-"),
-                    new MenuItem("&Save as...", this.SaveAsContextMenuItem_OnClick, Shortcut.CtrlS),
-                    new MenuItem("&Copy file path", this.CopyFilePathContextMenuItem_OnClick, Shortcut.CtrlC),
-                    new MenuItem("Copy &image", this.CopyImageContextMenuItem_OnClick, Shortcut.CtrlShiftC),
+                    new MenuItem(Properties.Resources.SaveAs, this.SaveAsContextMenuItem_OnClick, Shortcut.CtrlS),
+                    new MenuItem(Properties.Resources.CopyFilePath, this.CopyFilePathContextMenuItem_OnClick, Shortcut.CtrlC),
+                    new MenuItem(Properties.Resources.CopyImage, this.CopyImageContextMenuItem_OnClick, Shortcut.CtrlShiftC),
                     new MenuItem("-"),
-                    new MenuItem("Save all images...", this.SaveAllImagesContextMenuitem_OnClick, Shortcut.CtrlShiftS)
+                    new MenuItem(Properties.Resources.SaveAllImages, this.SaveAllImagesContextMenuitem_OnClick, Shortcut.CtrlShiftS)
                 });
         }
 

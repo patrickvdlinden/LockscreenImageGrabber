@@ -20,7 +20,7 @@ namespace LockscreenImageGrabber
             this.flowLayoutPanel.ContextMenu = new ContextMenu(
                 new[]
                 {
-                    new MenuItem("&Save all images...", this.SaveAllImagesContextMenuitem_OnClick, Shortcut.CtrlShiftS),
+                    new MenuItem(Properties.Resources.SaveAllImages, this.SaveAllImagesContextMenuitem_OnClick, Shortcut.CtrlShiftS),
                 });
         }
 
@@ -37,7 +37,7 @@ namespace LockscreenImageGrabber
 
             if (!Directory.Exists(pathToImages))
             {
-                MessageBox.Show("The lockscreen assets folder could not be found.");
+                MessageBox.Show(Properties.Resources.TheLockscreenAssetsFolderCouldNotBeFound);
             }
 
             var images = Directory.GetFiles(pathToImages);
@@ -61,7 +61,6 @@ namespace LockscreenImageGrabber
             {
                 var path = Path.Combine(tempPath, Path.GetFileName(sourcePath) + ".jpg");
                 File.Copy(sourcePath, path, true);
-
                 try
                 {
 
@@ -88,7 +87,7 @@ namespace LockscreenImageGrabber
                         imageIndex++;
                     }
                 }
-                catch (OutOfMemoryException ex)
+                catch (OutOfMemoryException)
                 {
                     // File is not a valid image so Image.FromFile throws an OutOfMemoryException
                 }
@@ -137,7 +136,7 @@ namespace LockscreenImageGrabber
                 var label = new Label
                 {
                     AutoSize = true,
-                    Text = "It seems you have disabled Lockscreen Spotlight. No images were found.",
+                    Text = Properties.Resources.ItSeemsYouHaveDisabledLockscreenSpotlightNoImagesWereFound,
                     Font = new Font("Segoe UI", 12),
                 };
                 this.flowLayoutPanel.Controls.Add(label);
@@ -160,7 +159,7 @@ namespace LockscreenImageGrabber
             {
                 if (!Directory.Exists(dialog.SelectedPath))
                 {
-                    MessageBox.Show("Selected path does not exist.");
+                    MessageBox.Show(Properties.Resources.SelectedPathDoesNotExist);
                     return;
                 }
 
